@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>秒车首页-智能搜索</title>
+    <style>
+        /*此样式为Demo样式，无需引用 Start*/
+        *{ padding:0px; maring:0px; border:0px; }
+        body{ background:#eee; }
+        .search-box{ position: relative; width:490px; padding:2px; background:#dc181c; margin:0 auto; }
+        .search-box input{ float:left; width:400px; height:30px; line-height:30px; font-size:14px; text-indent:10px; color:#333; outline:none; }
+        .search-box button{ width:90px; height:30px; background:#dc181c; line-height:30px; text-align:center; color:#fff; cursor:pointer; font-size:16px; }
+        /*此样式为Demo样式，无需引用 End*/
+    </style>
+    <!--此样式必须引用 Start-->
+    <link href="skin/mrco.search.css" rel="stylesheet"/>
+    <!--此样式必须引用 End-->
+</head>
+<body>
+    <div class="search-box">
+        <input id="js-search-txt" type="text" placeholder="输入品牌或车型，例如奥迪A4L"><button id="js-btn-search">搜 索</button>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="scripts/mrco-search-plugn.js"></script>
+    <script>
+        $(function(){
+            //调用方式
+            $('#js-search-txt').search({
+                buttonSearchID:'js-btn-search',
+                delayTime:500,
+                dataPath:{
+                    get:'/aj/data'
+                },
+                defaultData:{
+                    historyList:[
+                        { 'id':'001', 'carName':'BMW1系','discount': '7.6折起', url:'/a.html'},
+                        { 'id':'002', 'carName':'BMW2系','discount': '8.6折起', url:'/a.html' }
+                    ],
+                    keyList:[
+                        { 'id':'001', 'carName':'奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1奥迪A1','discount': '7.6折起', url:'/a.html' },
+                        { 'id':'002', 'carName':'奥迪A2','discount': '8.6折起', url:'/a.html' }
+                    ]
+                },
+                deleteCallback:function(data){
+                    console.log('ID:' + data.id + '\r\nKey:' + data.key);
+                },
+                searchCallback:function(data){
+                    console.log('ID:' + data.id + '\r\nKey:' + data.key + '\r\nUrl:' + data.url);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
